@@ -209,7 +209,7 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
 
   onKeyPress = (event: { nativeEvent: { key: string } }) => {
     this.keyPressedCalled = (this.keyPressedCalled || 0) + 1;
-    if (this.props.text !== '' || event.nativeEvent.key !== 'Backspace' || this.keyPressedCalled === 2) {
+    if (this.props.text !== '' || event.nativeEvent.key !== 'Backspace' || this.keyPressedCalled >= 2) {
       return;
     }
     this.keyPressedCalled = 0;
