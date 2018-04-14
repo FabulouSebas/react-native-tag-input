@@ -208,9 +208,12 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
   }
 
   onKeyPress = (event: { nativeEvent: { key: string } }) => {
-    event.preventDefault()
+    console.log('KeyPress');
     if (this.props.text !== '' || event.nativeEvent.key !== 'Backspace') {
       return;
+    }
+    if(event.nativeEvent.key !== 'Backspace') {
+      console.log('Backspace');
     }
     const tags = [...this.props.value];
     tags.pop();
@@ -289,7 +292,10 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
                     color: this.props.inputColor,
                   }]}
                   onBlur={Platform.OS === "ios" ? this.onBlur : undefined}
-                  onChangeText={this.props.onChangeText}
+                  onChangeText={(text)=>{
+                    console.log('ChangeText');
+                    this.props.onChangeText(text);
+                  }}
                   autoCapitalize="none"
                   autoCorrect={false}
                   placeholder="Start typing"
